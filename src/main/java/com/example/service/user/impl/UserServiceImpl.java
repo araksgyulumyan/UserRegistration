@@ -46,6 +46,39 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUsers();
     }
 
+    @Override
+    @Transactional
+    public User updateUser(Long id, UserDto userDto) {
+        assertUserDto(userDto);
+        assertEmailUniqueness(userRepository.getUserByEmail(userDto.getEmail()));
+        final String encodedPassword = passwordEncoder.encode(userDto.getPassword());
+        User user = getUserById(id);
+        //todo null pointer exception
+        userDto.updateDomainModelProperties(user);
+        user.setPassword(encodedPassword);
+        user = userRepository.saveUser(user);
+        return user;
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
+        assertId(id);
+        try {
+            if (userRepository.getUserById(id) != null) {
+                userRepository.deleteUser(id);
+            }
+        } catch (NullPointerException ex) {
+            throw new RuntimeException("User is not found");
+        }
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        assertId(id);
+        return userRepository.getUserById(id);
+    }
+
     // Utility methods
     private static void assertUserDto(final UserDto userDto) {
         Assert.notNull(userDto, "User dto should not be null");
@@ -58,8 +91,12 @@ public class UserServiceImpl implements UserService {
     }
 
     private static void assertEmailUniqueness(User user) {
-        if(user != null) {
+        if (user != null) {
             throw new RuntimeException("Email is already taken");
         }
+    }
+
+    private static void assertId(Long id) {
+        Assert.notNull(id, "Id should not be null");
     }
 }

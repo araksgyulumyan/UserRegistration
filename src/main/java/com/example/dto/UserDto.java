@@ -1,7 +1,6 @@
 package com.example.dto;
 
 import com.example.entity.User;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
 
@@ -19,7 +18,6 @@ public class UserDto implements Serializable {
     private String lastName;
     private String email;
     private Integer phone;
-    private CommonsMultipartFile photo;
 
     public String getUsername() {
         return username;
@@ -72,15 +70,6 @@ public class UserDto implements Serializable {
 
     public UserDto setPhone(Integer phone) {
         this.phone = phone;
-        return this;
-    }
-
-    public CommonsMultipartFile getPhoto() {
-        return photo;
-    }
-
-    public UserDto setPhoto(CommonsMultipartFile photo) {
-        this.photo = photo;
         return this;
     }
 

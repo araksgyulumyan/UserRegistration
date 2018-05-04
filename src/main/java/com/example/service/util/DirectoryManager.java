@@ -25,4 +25,6 @@ public interface DirectoryManager {
      * @return File
      */
     File createFile(final String name, final File parentDirectory);
+
+    String getUserPhoto(final Long userId);
 }

@@ -52,6 +52,8 @@
         <beans:property name="maxUploadSize" value="1000000000"/>
     </beans:bean>
 
+    <resources mapping="${photoPath}/**" location="${photoPath}/"/>
+
     <beans:bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <beans:property name="ignoreUnresolvablePlaceholders" value="true"/>
         <beans:property name="locations">

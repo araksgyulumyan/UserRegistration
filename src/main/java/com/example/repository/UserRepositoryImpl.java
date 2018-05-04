@@ -1,11 +1,13 @@
 package com.example.repository;
 
 import com.example.entity.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
@@ -13,17 +15,15 @@ import java.util.List;
  * Date - 4/11/18
  * Time - 1:16 PM
  */
-//todo multiple usage of annotation
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     private SessionFactory sessionfactory;
 
-    //todo research how to save data to db except this method of saving
     @Override
     public User saveUser(final User user) {
-       return (User) sessionfactory.getCurrentSession().merge(user);
+        return (User) sessionfactory.getCurrentSession().merge(user);
     }
 
     @Override
@@ -35,7 +35,31 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getUserByEmail(String email) {
-        return (User) sessionfactory.getCurrentSession()
+        User user = (User) sessionfactory.getCurrentSession()
                 .createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
+        if (user == null) {
+            throw new EntityNotFoundException("User is not found");
+        }
+        return user;
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        User user = (User) sessionfactory.getCurrentSession()
+                .createCriteria(User.class).add(Restrictions.eq("id", id)).uniqueResult();
+        if (user == null) {
+            throw new EntityNotFoundException("User is not found");
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        Session session = sessionfactory.getCurrentSession();
+        User user = getUserById(id);
+        if (user == null) {
+            throw new RuntimeException("User is not found");
+        }
+        session.delete(user);
     }
 }

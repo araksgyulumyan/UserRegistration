@@ -18,4 +18,8 @@ public interface UserRepository {
     List<User> getUsers();
 
     User getUserByEmail(String email);
+
+    User getUserById(Long id);
+
+    void deleteUser(Long id);
 }
