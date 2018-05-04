@@ -1,6 +1,6 @@
-package com.example.service.util.impl;
+package com.example.core.service.util.impl;
 
-import com.example.service.util.DirectoryManager;
+import com.example.core.service.util.DirectoryManager;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

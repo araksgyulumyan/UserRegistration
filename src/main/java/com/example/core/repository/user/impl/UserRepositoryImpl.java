@@ -1,6 +1,7 @@
-package com.example.repository;
+package com.example.core.repository.user.impl;
 
-import com.example.entity.User;
+import com.example.core.entity.User;
+import com.example.core.repository.user.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

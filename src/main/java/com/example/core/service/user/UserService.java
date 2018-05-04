@@ -1,7 +1,7 @@
-package com.example.service.user;
+package com.example.core.service.user;
 
-import com.example.dto.UserDto;
-import com.example.entity.User;
+import com.example.core.dto.UserDto;
+import com.example.core.entity.User;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.example.core.repository.user;
 
-import com.example.entity.User;
+import com.example.core.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.api.model;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

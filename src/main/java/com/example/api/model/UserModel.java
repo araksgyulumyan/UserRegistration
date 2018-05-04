@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.api.model;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

@@ -1,9 +1,9 @@
-package com.example.service.user.impl;
+package com.example.core.service.user.impl;
 
-import com.example.dto.UserDto;
-import com.example.entity.User;
-import com.example.repository.UserRepository;
-import com.example.service.user.UserService;
+import com.example.core.dto.UserDto;
+import com.example.core.entity.User;
+import com.example.core.repository.user.UserRepository;
+import com.example.core.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
         assertEmailUniqueness(userRepository.getUserByEmail(userDto.getEmail()));
         final String encodedPassword = passwordEncoder.encode(userDto.getPassword());
         User user = getUserById(id);
-        //todo null pointer exception
         userDto.updateDomainModelProperties(user);
         user.setPassword(encodedPassword);
         user = userRepository.saveUser(user);

@@ -1,4 +1,4 @@
-package com.example.service.util;
+package com.example.core.service.util;
 
 import java.io.File;
 
