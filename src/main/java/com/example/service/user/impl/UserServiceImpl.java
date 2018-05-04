@@ -64,13 +64,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(Long id) {
         assertId(id);
-        try {
-            if (userRepository.getUserById(id) != null) {
-                userRepository.deleteUser(id);
-            }
-        } catch (NullPointerException ex) {
-            throw new RuntimeException("User is not found");
+        if (userRepository.getUserById(id) == null) {
+            throw new NullPointerException("User is not found");
         }
+        userRepository.deleteUser(id);
     }
 
     @Override
