@@ -21,7 +21,6 @@ import java.util.Base64;
 @Component
 public class SimpleDirectoryManager implements DirectoryManager {
 
-    //todo rename
     @Value("${photoPath}")
     private String photoPath;
 
