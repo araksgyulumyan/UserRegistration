@@ -1,2 +1,2 @@
-# UserRegistration using Spring Framework MVC.
+# UserRegistration using Spring MVC.
 Includes File Upload Functionality.
